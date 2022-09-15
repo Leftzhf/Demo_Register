@@ -27,12 +27,20 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <scope>provided </scope>
         </dependency>
-        <!--swagger-->
+<!--        &lt;!&ndash;swagger&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.springfox</groupId>-->
+<!--            <artifactId>springfox-boot-starter</artifactId>-->
+<!--            <scope>provided </scope>-->
+<!--        </dependency>-->
+
+        <!--knife4j-->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
             <scope>provided </scope>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
@@ -48,5 +56,6 @@
             <artifactId>fastjson</artifactId>
             <scope>provided </scope>
         </dependency>
+
     </dependencies>
 </project>
