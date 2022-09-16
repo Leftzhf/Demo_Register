@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+
 @ComponentScan(basePackages = "com.registration")
 public class ServiceHostApplication {
     public static void main(String[] args) {
