@@ -1,7 +1,5 @@
 package com.registration.hospital.controller;
 
-import cn.hutool.crypto.SecureUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.registration.hospital.entity.THospitalSettings;
 import com.registration.hospital.service.ITHospitalSettingsService;
@@ -13,35 +11,37 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Random;
 
 /**
+ * thospital设置控制器
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author author
+ * @date 2022/09/16
  * @since 2022-09-12
  */
 @RestController
 @RequestMapping("/admin/hospital-settings")
-@Api(tags="医院设置接口",description = "医院设置接口")
+@Api(tags="医院设置信息接口",description = "医院设置信息接口")
 public class THospitalSettingsController extends BaseController {
 
+    /**
+     * 我医院服务
+     */
     @Autowired
     private ITHospitalSettingsService iHospitalSettingsService ;
 
     /**
      * 找到所有hostpital
      *
-     * @return {@link List}<{@link THospitalSettings}>
+     * @return {@link ResponseData}<{@link List}<{@link THospitalSettings}>>
      */
 
     @ApiOperation(value = "查找所有医院设置信息")
@@ -53,6 +53,7 @@ public class THospitalSettingsController extends BaseController {
     }
 
     /**
+     * 删除医院通过id
      * 删除通过id
      *
      * @param id id
@@ -61,7 +62,7 @@ public class THospitalSettingsController extends BaseController {
     @Transactional(rollbackFor = Exception.class)
     @ApiOperation(value= "根据主键删除医院设置信息")
     @DeleteMapping (value = "/delete/{id}")
-    public ResponseData<Boolean> deleteById(@PathVariable String id){
+    public ResponseData<Boolean> deleteHospitalSettingsById(@PathVariable String id){
         return buildResponseData(() ->{
             boolean falg = iHospitalSettingsService.removeById(id);
             if(falg){
@@ -90,26 +91,70 @@ public class THospitalSettingsController extends BaseController {
                                                                        @PathVariable Integer limit,
                                                                        @RequestBody(required = false) HospitalSetQueryVo hospitalSetQueryVo){
         return buildResponseData(()->{
-            Page<THospitalSettings> page = new Page<>(current,limit);
-            QueryWrapper<THospitalSettings> wrapper = new QueryWrapper<>();
-            if (StringUtils.isNotBlank(hospitalSetQueryVo.getHosname())) {
-                wrapper.like("hospital_name", hospitalSetQueryVo.getHosname());
-            }
-            if (StringUtils.isNotBlank(hospitalSetQueryVo.getHoscode())){
-                wrapper.eq("hospital_code", hospitalSetQueryVo.getHoscode());
-            }
-           return  iHospitalSettingsService.page(page, wrapper);
+           return  iHospitalSettingsService.findAllHospitalByPage(current,limit,hospitalSetQueryVo);
         },"查找所有医院设置信息-分页");
     }
 
+    /**
+     * 医院设置添加
+     *
+     * @param tHospitalSettings t医院
+     * @return {@link ResponseData}<{@link Boolean}>
+     */
     @ApiOperation("添加医院设置信息")
     @PostMapping("/add")
     public ResponseData<Boolean> addHospitalSettings(@RequestBody THospitalSettings tHospitalSettings){
         return buildResponseData(()->{
-            tHospitalSettings.setStatus("1");
-            Random random = new Random();
-            tHospitalSettings.setSignKey(SecureUtil.md5(LocalDateTime.now()+""+random.nextInt(1000)));
-            return iHospitalSettingsService.save(tHospitalSettings);
+            return iHospitalSettingsService.addHospitalSettings(tHospitalSettings);
         },"添加医院设置信息");
+    }
+
+    /**
+     * 通过id获取医院
+     *
+     * @param id id
+     * @return {@link ResponseData}<{@link THospitalSettings}>
+     */
+    @ApiOperation("根据id查询医院设置信息")
+    @GetMapping("/get/{id}")
+    public ResponseData<THospitalSettings> getHospitalSettingsById(@PathVariable String id){
+       return buildResponseData(()->{
+           return iHospitalSettingsService.getById(id);
+       },"根据id查询医院设置信息");
+    }
+
+    /**
+     * 更新医院通过id
+     *
+     * @param tHospitalSettings t医院
+     * @return {@link ResponseData}<{@link Boolean}>
+     */
+    @ApiOperation("根据id更新医院设置信息")
+    @PutMapping("/update")
+    public ResponseData<Boolean> updateHospitalSettingsById(@RequestBody THospitalSettings tHospitalSettings){
+        return buildResponseData(()->{
+            return iHospitalSettingsService.updateById(tHospitalSettings);
+        },"根据id更新医院设置信息");
+    }
+
+    /**
+     * 批量删除医院
+     *
+     * @param tHospitalSettingsIds t医院id
+     * @return {@link ResponseData}<{@link Boolean}>
+     */
+    @ApiOperation("根据id批量删除医院设置信息")
+    @DeleteMapping("/batchDelete")
+    public ResponseData<Boolean> batchDeleteHospitalSettings(@RequestBody List<String> tHospitalSettingsIds){
+        return buildResponseData(()->{
+            return iHospitalSettingsService.removeBatchByIds(tHospitalSettingsIds);
+        },"根据id批量删除医院设置信息");
+    }
+    @PostMapping("sendKey/{id}")
+    public ResponseData<Boolean> sendHospitalSettingsKey(@PathVariable String id){
+        return  buildResponseData(()->{
+            return iHospitalSettingsService.sendHospitalSettingsKey(id);
+        },"发送医院接口token");
+
     }
 }
