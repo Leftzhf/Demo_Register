@@ -48,7 +48,7 @@ public interface ResponseDataBuilder<T> {
                 pageData.setTotalCount(list.size());
                 responseData.setPage(pageData);
                 if(limit > 0 || offset < list.size()){
-                    list = list.subList(offset,(offset+limit)>list.size()?list.size():offset+limit);
+                    list = list.subList(offset, Math.min((offset + limit), list.size()));
                 }
                 t = (T)list;
             }

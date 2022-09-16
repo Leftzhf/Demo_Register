@@ -1,7 +1,7 @@
 package com.registration.hospital.service;
 
-import com.registration.hospital.entity.THospitalSettings;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.registration.hospital.entity.THospitalSettings;
 
 /**
  * <p>

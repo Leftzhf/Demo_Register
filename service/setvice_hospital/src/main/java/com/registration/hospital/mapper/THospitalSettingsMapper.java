@@ -1,7 +1,7 @@
 package com.registration.hospital.mapper;
 
-import com.registration.hospital.entity.THospitalSettings;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.registration.hospital.entity.THospitalSettings;
 
 /**
  * <p>
