@@ -47,6 +47,7 @@ public class THospitalSettingsServiceImpl extends ServiceImpl<THospitalSettingsM
 
     @Override
     public Boolean sendHospitalSettingsKey(String id) {
+        //TODO 发送医院接口token
         return null;
     }
 }
