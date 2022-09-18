@@ -1,12 +1,13 @@
 package com.registration.hospital.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * <p>
@@ -14,63 +15,50 @@ import lombok.Setter;
  * </p>
  *
  * @author leftleft
- * @since 2022-09-15
+ * @since 2022-09-16
  */
-@Getter
-@Setter
+@Data
 @TableName("t_hospital_settings")
+@ApiModel(value = "THospitalSettings对象", description = "")
 public class THospitalSettings implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键id
-     */
+    @ApiModelProperty("主键id")
+    @TableId(type = IdType.ASSIGN_ID)
+    @NotBlank(message = "主键id不能为空")
     private String id;
 
-    /**
-     * 医院名称
-     */
+    @ApiModelProperty("医院名称")
     private String hospitalName;
 
-    /**
-     * 医院编号
-     */
+    @ApiModelProperty("医院编号")
     private String hospitalCode;
 
-    /**
-     * api基础路径
-     */
+    @ApiModelProperty("api基础路径")
     private String apiUrl;
 
-    /**
-     * 签名密钥
-     */
+    @ApiModelProperty("签名密钥")
     private String signKey;
 
-    /**
-     * 联系人
-     */
+    @ApiModelProperty("联系人")
     private String contactsName;
 
-    /**
-     * 联系人手机
-     */
+    @ApiModelProperty("联系人手机")
     private String contactsPhone;
 
-    /**
-     * 状态
-     */
+    @ApiModelProperty("状态")
     private String status;
 
-    /**
-     * 创建时间
-     */
+    @ApiModelProperty("创建时间")
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    /**
-     * 修改时间
-     */
+    @ApiModelProperty("修改时间")
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime updateTime;
+
+    @ApiModelProperty(value = "逻辑删除(1:已删除，0:未删除)")
+    @TableLogic
+    private Integer isDeleted;
 }

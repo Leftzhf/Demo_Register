@@ -9,10 +9,13 @@ import lombok.Getter;
 public enum ResultCodeEnum {
 
     SUCCESS(200,"成功"),
-    FAIL(201, "失败"),
+    ERROR_404(404,"资源不存在"),
+    FAIL(201, "失败，数据不存在"),
+    APPLICATION_ERROR(207, "业务异常"),
     PARAM_ERROR( 202, "参数不正确"),
     SERVICE_ERROR(203, "服务异常"),
     DATA_ERROR(204, "数据异常"),
+    INVALITENUM_ERROR(206, "参数校验异常"),
     DATA_UPDATE_ERROR(205, "数据版本异常"),
 
     LOGIN_AUTH(208, "未登陆"),

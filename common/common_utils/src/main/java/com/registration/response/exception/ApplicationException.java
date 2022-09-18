@@ -1,6 +1,6 @@
 package com.registration.response.exception;
 
-import com.registration.response.enums.ExceptionCodeEnum;
+import com.registration.response.enums.ResultCodeEnum;
 import lombok.Data;
 
 @Data
@@ -9,7 +9,7 @@ public class ApplicationException extends RuntimeException {
     /**
      * 异常对应的返回码
      */
-    private String code = ExceptionCodeEnum.APPLICATION.getCode();
+    private Integer code= ResultCodeEnum.SERVICE_ERROR.getCode();
     /**
      * 异常对应的描述信息
      */
@@ -25,7 +25,7 @@ public class ApplicationException extends RuntimeException {
     }
 
 
-    public ApplicationException(String code, String message) {
+    public ApplicationException(Integer code, String message) {
         super(message);
         this.code = code;
         this.msg = message;
