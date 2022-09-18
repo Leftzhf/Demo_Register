@@ -10,8 +10,11 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -25,6 +28,7 @@ import java.util.List;
  * @since 2022-09-12
  */
 @RestController
+@Validated
 @RequestMapping("/admin/hospital-settings")
 @Api(tags = "医院设置信息接口", description = "医院设置信息接口")
 public class THospitalSettingsController {
@@ -42,7 +46,7 @@ public class THospitalSettingsController {
      */
 
     @ApiOperation(value = "查找所有医院设置信息")
-    @GetMapping(value = "/findAll")
+    @GetMapping(value = "/get")
     public List<THospitalSettings> findAllHostpital() {
         return iHospitalSettingsService.list();
     }
@@ -72,7 +76,8 @@ public class THospitalSettingsController {
      * @return {@link Page}<{@link THospitalSettings}>
      */
     @ApiOperation(value = "查找所有医院设置信息-分页")
-    @ApiImplicitParams({@ApiImplicitParam(
+    @ApiImplicitParams({
+                        @ApiImplicitParam(
                                 name = "current",
                                 value = "当前页",
                                 required = true,
@@ -83,9 +88,9 @@ public class THospitalSettingsController {
                                 required = true,
                                 paramType = "path",
                                 dataType = "Integer"),})
-    @PostMapping(value = "/findAllByPage/{current}/{limit}")
-    public Page<THospitalSettings> findAllHospitalByPage(@PathVariable Integer current,
-                                                         @PathVariable Integer limit,
+    @PostMapping(value = "/getWithPage/{current}/{limit}")
+    public Page<THospitalSettings> findAllHospitalByPage(@PathVariable @NotBlank Integer current,
+                                                         @PathVariable @NotBlank Integer limit,
                                                          @RequestBody(required = false)
                                                          HospitalSetQueryVo hospitalSetQueryVo) {
         return iHospitalSettingsService.findAllHospitalByPage(current, limit, hospitalSetQueryVo);
@@ -110,7 +115,8 @@ public class THospitalSettingsController {
      * @return {@link THospitalSettings}
      */
     @ApiOperation("根据id查询医院设置信息")
-    public THospitalSettings getHospitalSettingsById(@PathVariable String id) {
+    @GetMapping("/get/{id}")
+    public THospitalSettings getHospitalSettingsById(@PathVariable @NotBlank String id) {
         return iHospitalSettingsService.getById(id);
     }
 
@@ -120,9 +126,9 @@ public class THospitalSettingsController {
      * @param tHospitalSettings t医院
      * @return {@link Boolean}
      */
-    @ApiOperation("根据id更新医院设置信息")
+    @ApiOperation(value = "根据id更新医院设置信息",notes = "注意，此接口会更新所有传入的参数！")
     @PutMapping("/update")
-    public Boolean updateHospitalSettingsById(@RequestBody THospitalSettings tHospitalSettings) {
+    public Boolean updateHospitalSettingsById( @RequestBody @Valid THospitalSettings tHospitalSettings) {
         return iHospitalSettingsService.updateById(tHospitalSettings);
     }
 
@@ -134,7 +140,7 @@ public class THospitalSettingsController {
      */
     @ApiOperation("根据id批量删除医院设置信息")
     @DeleteMapping("/batchDelete")
-    public Boolean batchDeleteHospitalSettings(@RequestBody List<String> tHospitalSettingsIds) {
+    public Boolean batchDeleteHospitalSettings(@Validated @RequestBody List<String> tHospitalSettingsIds) {
         return iHospitalSettingsService.removeBatchByIds(tHospitalSettingsIds);
     }
 
@@ -146,7 +152,7 @@ public class THospitalSettingsController {
      */
     @ApiOperation("发送医院接口token")
     @PostMapping("/sendKey/{id}")
-    public Boolean sendHospitalSettingsKey(@PathVariable String id) {
+    public Boolean sendHospitalSettingsKey(@PathVariable @NotBlank String id) {
         return iHospitalSettingsService.sendHospitalSettingsKey(id);
     }
 }

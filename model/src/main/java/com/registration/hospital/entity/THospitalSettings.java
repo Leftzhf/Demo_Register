@@ -3,9 +3,9 @@ package com.registration.hospital.entity;
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -17,8 +17,7 @@ import java.time.LocalDateTime;
  * @author leftleft
  * @since 2022-09-16
  */
-@Getter
-@Setter
+@Data
 @TableName("t_hospital_settings")
 @ApiModel(value = "THospitalSettings对象", description = "")
 public class THospitalSettings implements Serializable {
@@ -27,6 +26,7 @@ public class THospitalSettings implements Serializable {
 
     @ApiModelProperty("主键id")
     @TableId(type = IdType.ASSIGN_ID)
+    @NotBlank(message = "主键id不能为空")
     private String id;
 
     @ApiModelProperty("医院名称")
