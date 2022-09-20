@@ -1,4 +1,4 @@
-package com.registration.hospital.handler;
+package com.registration.dictionary.com.registration.dictionary.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

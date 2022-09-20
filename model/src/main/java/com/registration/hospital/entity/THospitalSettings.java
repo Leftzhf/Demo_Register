@@ -60,5 +60,6 @@ public class THospitalSettings implements Serializable {
 
     @ApiModelProperty(value = "逻辑删除(1:已删除，0:未删除)")
     @TableLogic
+    @TableField(fill = FieldFill.INSERT)
     private Integer isDeleted;
 }

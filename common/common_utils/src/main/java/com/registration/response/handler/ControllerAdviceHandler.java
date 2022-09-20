@@ -79,6 +79,7 @@ public class ControllerAdviceHandler implements ResponseBodyAdvice<Object> {
         }
         //如果接口已经做了包装了，这里拦截后就不用再包装
         if (o instanceof ResponseData) {
+//            if( ((ResponseData<?>) o).getData() instanceof Boolean)
             return o;
         }
         //如果返回的是布尔值，则根据布尔值进行判断是否成功

@@ -14,6 +14,7 @@
     <modules>
         <module>service_user</module>
         <module>setvice_hospital</module>
+        <module>service_dictionary</module>
     </modules>
 
     <properties>

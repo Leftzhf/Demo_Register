@@ -36,11 +36,11 @@ public class THospitalSettingsServiceImpl extends ServiceImpl<THospitalSettingsM
     public Page<THospitalSettings> findAllHospitalByPage(Integer current, Integer limit, HospitalSetQueryVo hospitalSetQueryVo) {
         Page<THospitalSettings> page = new Page<>(current, limit);
         QueryWrapper<THospitalSettings> wrapper = new QueryWrapper<>();
-        if (StringUtils.isNotBlank(hospitalSetQueryVo.getHosname())) {
-            wrapper.like("hospital_name", hospitalSetQueryVo.getHosname());
+        if (StringUtils.isNotBlank(hospitalSetQueryVo.getHospitalName())) {
+            wrapper.like("hospital_name", hospitalSetQueryVo.getHospitalName());
         }
-        if (StringUtils.isNotBlank(hospitalSetQueryVo.getHoscode())) {
-            wrapper.eq("hospital_code", hospitalSetQueryVo.getHoscode());
+        if (StringUtils.isNotBlank(hospitalSetQueryVo.getHospitalCode())) {
+            wrapper.eq("hospital_code", hospitalSetQueryVo.getHospitalCode());
         }
         return this.page(page, wrapper);
     }

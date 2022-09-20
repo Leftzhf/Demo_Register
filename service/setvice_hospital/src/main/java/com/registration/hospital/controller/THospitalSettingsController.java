@@ -29,6 +29,7 @@ import java.util.List;
  */
 @RestController
 @Validated
+@CrossOrigin
 @RequestMapping("/admin/hospital-settings")
 @Api(tags = "医院设置信息接口", description = "医院设置信息接口")
 public class THospitalSettingsController {
@@ -89,8 +90,8 @@ public class THospitalSettingsController {
                                 paramType = "path",
                                 dataType = "Integer"),})
     @PostMapping(value = "/getWithPage/{current}/{limit}")
-    public Page<THospitalSettings> findAllHospitalByPage(@PathVariable @NotBlank Integer current,
-                                                         @PathVariable @NotBlank Integer limit,
+    public Page<THospitalSettings> findAllHospitalByPage(@PathVariable  Integer current,
+                                                         @PathVariable  Integer limit,
                                                          @RequestBody(required = false)
                                                          HospitalSetQueryVo hospitalSetQueryVo) {
         return iHospitalSettingsService.findAllHospitalByPage(current, limit, hospitalSetQueryVo);
