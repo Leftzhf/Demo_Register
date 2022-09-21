@@ -9,8 +9,8 @@ import lombok.Data;
 public class HospitalSetQueryVo {
 
     @ApiModelProperty(value = "医院名称")
-    private String hosname;
+    private String hospitalName;
 
     @ApiModelProperty(value = "医院编号")
-    private String hoscode;
+    private String hospitalCode;
 }
