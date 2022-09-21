@@ -13,8 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>service_user</module>
-        <module>setvice_hospital</module>
+        <module>service_hospital</module>
         <module>service_dictionary</module>
+        <module>service_hospital_manage</module>
     </modules>
 
     <properties>
@@ -70,6 +71,19 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.0.1.Final</version>
         </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>service_utils</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>common_utils</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
+
+
         <!-- 服务调用feign -->
 
 <!--        <dependency>-->

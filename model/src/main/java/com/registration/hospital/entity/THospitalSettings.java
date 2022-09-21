@@ -1,11 +1,16 @@
 package com.registration.hospital.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -26,8 +31,8 @@ public class THospitalSettings implements Serializable {
 
     @ApiModelProperty("主键id")
     @TableId(type = IdType.ASSIGN_ID)
-    @NotBlank(message = "主键id不能为空")
-    private String id;
+    @NotNull(message = "主键id不能为空")
+    private Long id;
 
     @ApiModelProperty("医院名称")
     private String hospitalName;
