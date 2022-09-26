@@ -1,7 +1,7 @@
 package com.registration.dictionary.service;
 
-import com.registration.hospital.entity.TDictionary;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.registration.hospital.entity.TDictionary;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +18,11 @@ import java.util.List;
  */
 public interface ITDictionaryService extends IService<TDictionary> {
 
-    public List<TDictionary> getChildData(String id);
+    List<TDictionary> getChildData(String id);
 
-    public void exportDictionary(HttpServletResponse response) throws IOException;
+    void exportDictionary(HttpServletResponse response) throws IOException;
 
-    public void importDictionary(MultipartFile file);
+    void importDictionary(MultipartFile file);
+
+    String getName (String dictCode,String value);
 }

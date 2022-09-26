@@ -4,7 +4,7 @@ import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.registration.hospital.entity.THospitalSettings;
+import com.registration.hospital.entity.hospital.THospitalSettings;
 import com.registration.hospital.mapper.THospitalSettingsMapper;
 import com.registration.hospital.service.ITHospitalSettingsService;
 import com.registration.hospital.vo.query.HospitalSetQueryVo;
@@ -42,13 +42,19 @@ public class THospitalSettingsServiceImpl extends ServiceImpl<THospitalSettingsM
         if (StringUtils.isNotBlank(hospitalSetQueryVo.getHospitalCode())) {
             wrapper.eq("hospital_code", hospitalSetQueryVo.getHospitalCode());
         }
-        Page<THospitalSettings> page1 = this.page(page, wrapper);
-        return page1;
+        return this.page(page, wrapper);
     }
 
     @Override
     public Boolean sendHospitalSettingsKey(Long id) {
         //TODO 发送医院接口token
         return null;
+    }
+
+    @Override
+    public THospitalSettings getByhospitalCode(String hospitalCode) {
+        QueryWrapper<THospitalSettings> queryWrap = new QueryWrapper();
+        queryWrap.eq("hospital_code",hospitalCode);
+        return baseMapper.selectOne(queryWrap);
     }
 }

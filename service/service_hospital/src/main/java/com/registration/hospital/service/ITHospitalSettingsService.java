@@ -2,7 +2,7 @@ package com.registration.hospital.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.registration.hospital.entity.THospitalSettings;
+import com.registration.hospital.entity.hospital.THospitalSettings;
 import com.registration.hospital.vo.query.HospitalSetQueryVo;
 
 /**
@@ -14,10 +14,12 @@ import com.registration.hospital.vo.query.HospitalSetQueryVo;
  * @since 2022-09-15
  */
 public interface ITHospitalSettingsService extends IService<THospitalSettings> {
-    public Boolean addHospitalSettings(THospitalSettings tHospitalSettings);
+    Boolean addHospitalSettings(THospitalSettings tHospitalSettings);
 
-    public Page<THospitalSettings> findAllHospitalByPage(Integer current,
+    Page<THospitalSettings> findAllHospitalByPage(Integer current,
                                                          Integer limit,
                                                          HospitalSetQueryVo hospitalSetQueryVo);
-    public Boolean sendHospitalSettingsKey(Long id);
+    Boolean sendHospitalSettingsKey(Long id);
+
+   THospitalSettings getByhospitalCode(String hospitalCode);
 }

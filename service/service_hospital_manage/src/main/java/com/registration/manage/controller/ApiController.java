@@ -1,5 +1,6 @@
 package com.registration.manage.controller;
 
+
 import com.registration.manage.mapper.HospitalSetMapper;
 import com.registration.manage.model.HospitalSet;
 import com.registration.manage.service.ApiService;
@@ -50,7 +51,7 @@ public class ApiController extends BaseController {
 	public String getHospital(ModelMap model,HttpServletRequest request,RedirectAttributes redirectAttributes) {
 		try {
 			HospitalSet hospitalSet = hospitalSetMapper.selectById(1);
-			if(null == hospitalSet || StringUtils.isEmpty(hospitalSet.getHospitalCode()) || StringUtils.isEmpty(hospitalSet.getSignKey())) {
+			if(null == hospitalSet || StringUtils.isEmpty(hospitalSet.getHoscode()) || StringUtils.isEmpty(hospitalSet.getSignKey())) {
 				this.failureMessage("先设置医院code与签名key", redirectAttributes);
 				return "redirect:/hospitalSet/index";
 			}
@@ -60,8 +61,10 @@ public class ApiController extends BaseController {
 			this.failureMessage(e.getMessage(), request);
 		} catch (Exception e) {
 			this.failureMessage("数据异常", request);
+		}finally {
+			return "hospital/index";
 		}
-		return "hospital/index";
+//		return "hospital/index";
 	}
 
 	@RequestMapping(value="/hospital/create")
@@ -88,7 +91,7 @@ public class ApiController extends BaseController {
 								 HttpServletRequest request,RedirectAttributes redirectAttributes) {
 		try {
 			HospitalSet hospitalSet = hospitalSetMapper.selectById(1);
-			if(null == hospitalSet || StringUtils.isEmpty(hospitalSet.getHospitalCode()) || StringUtils.isEmpty(hospitalSet.getSignKey())) {
+			if(null == hospitalSet || StringUtils.isEmpty(hospitalSet.getHoscode()) || StringUtils.isEmpty(hospitalSet.getSignKey())) {
 				this.failureMessage("先设置医院code与签名key", redirectAttributes);
 				return "redirect:/hospitalSet/index";
 			}
@@ -126,7 +129,7 @@ public class ApiController extends BaseController {
 							   HttpServletRequest request,RedirectAttributes redirectAttributes) {
 		try {
 			HospitalSet hospitalSet = hospitalSetMapper.selectById(1);
-			if(null == hospitalSet || StringUtils.isEmpty(hospitalSet.getHospitalCode()) || StringUtils.isEmpty(hospitalSet.getSignKey())) {
+			if(null == hospitalSet || StringUtils.isEmpty(hospitalSet.getHoscode()) || StringUtils.isEmpty(hospitalSet.getSignKey())) {
 				this.failureMessage("先设置医院code与签名key", redirectAttributes);
 				return "redirect:/hospitalSet/index";
 			}

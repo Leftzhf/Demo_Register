@@ -13,14 +13,14 @@ import lombok.Data;
  * @author qy
  */
 @Data
-@ApiModel(description = "t_hospital_settings")
-@TableName("t_hospital_settings")
+@ApiModel(description = "HospitalSet")
+@TableName("hospital_set")
 public class HospitalSet extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty("医院编号")
-	private String hospitalCode;
+	@ApiModelProperty(value = "医院编号")
+	private String hoscode;
 
 	@ApiModelProperty(value = "签名秘钥")
 	private String signKey;

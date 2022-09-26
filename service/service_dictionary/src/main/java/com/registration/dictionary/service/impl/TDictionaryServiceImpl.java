@@ -3,25 +3,23 @@ package com.registration.dictionary.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.registration.dictionary.listener.DictListener;
-import com.registration.hospital.entity.TDictionary;
 import com.registration.dictionary.mapper.TDictionaryMapper;
 import com.registration.dictionary.service.ITDictionaryService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.registration.hospital.entity.TDictionary;
 import com.registration.hospital.vo.DictionaryExcelVO;
 import com.registration.response.exception.ApplicationException;
-import org.apache.poi.ss.formula.functions.T;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 
 /**
@@ -92,5 +90,23 @@ public class TDictionaryServiceImpl extends ServiceImpl<TDictionaryMapper, TDict
         }catch (IOException e) {
             throw new ApplicationException("上传文件失败");
         }
+    }
+
+    @Override
+    public String getName(String dictCode, String value) {
+        QueryWrapper<TDictionary> queryWrap = new QueryWrapper<>();
+        TDictionary tDictionary;
+        if(StringUtils.isBlank(dictCode)){
+            queryWrap.eq("value",value);
+             tDictionary=tDictionaryMapper.selectOne(queryWrap);
+        }else {
+            queryWrap.eq("dict_code",dictCode);
+            TDictionary dictionary = tDictionaryMapper.selectOne(queryWrap);
+            String dictionaryId = dictionary.getId();
+            QueryWrapper<TDictionary> queryWrap2 = new QueryWrapper<>();
+            queryWrap2.eq("parent_id",dictionaryId).eq("value", value);
+            tDictionary = tDictionaryMapper.selectOne(queryWrap2);
+        }
+        return tDictionary.getName();
     }
 }

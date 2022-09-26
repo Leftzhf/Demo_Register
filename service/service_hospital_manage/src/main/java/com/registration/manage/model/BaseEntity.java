@@ -16,6 +16,7 @@ import java.util.Map;
 public class BaseEntity implements Serializable {
 
     @ApiModelProperty(value = "id")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "创建时间")
@@ -31,5 +32,7 @@ public class BaseEntity implements Serializable {
     @TableField("is_deleted")
     private Integer isDeleted;
 
-
+    @ApiModelProperty(value = "其他参数")
+    @TableField(exist = false)
+    private Map<String,Object> param = new HashMap<>();
 }

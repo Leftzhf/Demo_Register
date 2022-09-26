@@ -2,7 +2,6 @@ package com.registration.response.handler;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSON;
 import com.registration.response.enums.ResultCodeEnum;
 import com.registration.response.exception.ApplicationException;
 import com.registration.response.web.ResponseData;
@@ -72,11 +71,11 @@ public class ControllerAdviceHandler implements ResponseBodyAdvice<Object> {
             return ResponseData.failure();
         }
 
-        //如果Controller直接返回String的话，SpringBoot是直接返回，故我们需要手动转换成json。所以,String类型需要特殊处理 手动转为json字符串
-        if (o instanceof String) {
-
-            return JSON.toJSONString(ResponseData.success(o));
-        }
+        //如果Controller直接返回String的话，会报错，故我们需要手动转换成json。所以,String类型需要特殊处理 手动转为json字符串
+//        if (o instanceof String) {
+//
+//            return JSON.toJSONString(ResponseData.success(o));
+//        }
         //如果接口已经做了包装了，这里拦截后就不用再包装
         if (o instanceof ResponseData) {
 //            if( ((ResponseData<?>) o).getData() instanceof Boolean)
@@ -171,6 +170,7 @@ public class ControllerAdviceHandler implements ResponseBodyAdvice<Object> {
     @ResponseBody
     @ExceptionHandler(value = ApplicationException.class)
     public ResponseData<String> handlerParamError(Exception e) {
+            log.error(e.getMessage());
             return ResponseData.failure(ResultCodeEnum.SERVICE_ERROR.getCode(),e.getMessage());
     }
 

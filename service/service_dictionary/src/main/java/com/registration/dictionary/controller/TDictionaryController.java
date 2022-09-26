@@ -1,15 +1,14 @@
 package com.registration.dictionary.controller;
 
+import com.registration.dictionary.service.ITDictionaryService;
 import com.registration.hospital.entity.TDictionary;
 import com.registration.response.exception.ApplicationException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.registration.dictionary.service.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -45,5 +44,14 @@ public class TDictionaryController {
     @PostMapping("/importDictionary")
     public void importDictionary(MultipartFile file) throws ApplicationException, IOException {
         itdictionaryService.importDictionary(file);
+    }
+    @GetMapping("/getName/{dictCode}/{value}")
+    public String getName (@PathVariable String dictCode,
+                           @PathVariable String value){
+        return itdictionaryService.getName(dictCode,value);
+    }
+    @GetMapping("/getName/{value}")
+    public String getName (@PathVariable String value){
+        return itdictionaryService.getName("",value);
     }
 }

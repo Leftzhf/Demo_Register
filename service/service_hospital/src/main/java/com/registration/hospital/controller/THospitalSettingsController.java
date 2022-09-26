@@ -1,7 +1,7 @@
 package com.registration.hospital.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.registration.hospital.entity.THospitalSettings;
+import com.registration.hospital.entity.hospital.THospitalSettings;
 import com.registration.hospital.service.ITHospitalSettingsService;
 import com.registration.hospital.vo.query.HospitalSetQueryVo;
 import io.swagger.annotations.Api;
@@ -14,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
