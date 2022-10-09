@@ -1,4 +1,4 @@
-package com.atguigu.yygh.gateway.config;
+package com.registration.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

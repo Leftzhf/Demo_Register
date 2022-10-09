@@ -1,6 +1,7 @@
 package com.registration.common.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,6 +16,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableKnife4j
 @EnableSwagger2
 public class SwaggerConfig {
+    @Value("${spring.application.name}")
+    private String serviceName;
 
     @Bean
     public Docket webApiConfig(){
@@ -55,7 +58,7 @@ public class SwaggerConfig {
     private ApiInfo adminApiInfo(){
 
         return new ApiInfoBuilder()
-                .title("后台管理系统-API文档")
+                .title(serviceName+"服务API文档")
                 .description("本文档描述了后台管理系统微服务接口定义")
                 .version("1.0")
                 .contact(new Contact("atguigu", "http://atguigu.com", "49321112@qq.com"))

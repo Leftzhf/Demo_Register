@@ -40,7 +40,5 @@ public class BookingScheduleRuleListVo {
 
 	@ApiModelProperty(value = "状态 0：正常 1：即将放号 -1：当天已停止挂号")
 	private Integer status;
-
-
 }
 

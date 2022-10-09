@@ -8,7 +8,7 @@ import com.registration.dictionary.listener.DictListener;
 import com.registration.dictionary.mapper.TDictionaryMapper;
 import com.registration.dictionary.service.ITDictionaryService;
 import com.registration.hospital.entity.TDictionary;
-import com.registration.hospital.vo.DictionaryExcelVO;
+import com.registration.hospital.vo.service_dictionary.DictionaryExcelVO;
 import com.registration.response.exception.ApplicationException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +37,7 @@ public class TDictionaryServiceImpl extends ServiceImpl<TDictionaryMapper, TDict
 
     @Autowired
     DictListener dictListener;
+
     @Override
     @Cacheable(value = "dict",keyGenerator = "keyGenerator")
     public List<TDictionary> getChildData(String id) {
@@ -108,5 +109,19 @@ public class TDictionaryServiceImpl extends ServiceImpl<TDictionaryMapper, TDict
             tDictionary = tDictionaryMapper.selectOne(queryWrap2);
         }
         return tDictionary.getName();
+    }
+
+    @Override
+    public List<TDictionary> getChildeDictionaryByDictCode(String dictCode) {
+
+        QueryWrapper<TDictionary> queryWrap = new QueryWrapper<>();
+        queryWrap.eq("dict_code",dictCode);
+        TDictionary tDictionary = tDictionaryMapper.selectOne(queryWrap);
+        String tDictionaryId = tDictionary.getId();
+        List<TDictionary> tDictionaries = tDictionaryMapper.selectList(new QueryWrapper<TDictionary>().eq("parent_id", tDictionaryId));
+        tDictionaries.forEach(node->{
+            node.setHasChildren(hasChild(node.getId()));
+        });
+        return tDictionaries;
     }
 }

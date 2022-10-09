@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@ApiModel(description = "Hospital")
+@ApiModel(description = "医院查询条件")
 public class HospitalQueryVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;

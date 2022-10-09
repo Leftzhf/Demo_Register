@@ -31,6 +31,7 @@ public class HospitalServiceImpl implements HospitalService {
     @Autowired
     private ITHospitalSettingsService hospitalSettingsService;
 
+
     @Override
     public Boolean saveHospital(HttpServletRequest request) {
         //从请求体中拿到参数键值对
@@ -78,7 +79,7 @@ public class HospitalServiceImpl implements HospitalService {
         BeanUtils.copyProperties(hospitalSetQueryVo,hospital);
         Example<Hospital> example = Example.of(hospital, matcher);
         Page<Hospital> all = hospitalRepository.findAll(example, pageRequest);
-
+        //mongodb查出来的数据是没有医院等级信息的，需要从数据字典获取，这里远程调用数据字典服务的接口获取医院等级信息。
        all.getContent().forEach(iterm->{
             getHospitalInfo(iterm);
        });
@@ -86,7 +87,30 @@ public class HospitalServiceImpl implements HospitalService {
     }
     public void getHospitalInfo(Hospital hospital){
         //获取医院等级
-        ResponseData responseData = dictionaryClientService.getNameByDictCodeAndValue("Hostype", hospital.getHostype());
-        hospital.getParam().put("Hostype",responseData.getData());
+        ResponseData responseHostype = dictionaryClientService.getNameByDictCodeAndValue("Hostype", hospital.getHostype());
+        //查询省 市  地区
+        ResponseData provinceString = dictionaryClientService.getNameByValue(hospital.getProvinceCode());
+        ResponseData cityString = dictionaryClientService.getNameByValue(hospital.getCityCode());
+        ResponseData districtString = dictionaryClientService.getNameByValue(hospital.getDistrictCode());
+
+        hospital.getParam().put("Hostype",responseHostype.getData());
+        hospital.getParam().put("fullAddress", provinceString.getData() +(String)cityString.getData()+ districtString.getData());
     }
+
+    @Override
+    public Boolean updateHospitalStatus(String id, Integer status) {
+        Hospital hospital = hospitalRepository.findById(id).get();
+        hospital.setStatus(status);
+        hospitalRepository.save(hospital);
+        return true;
+    }
+
+    @Override
+    public Hospital getHospitalById(String id) {
+        Hospital hospital = hospitalRepository.findById(id).get();
+        getHospitalInfo(hospital);
+        return hospital;
+    }
+
+
 }

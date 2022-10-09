@@ -22,7 +22,6 @@ import java.util.List;
  * @since 2022-09-20
  */
 @RestController
-@CrossOrigin
 @Api(tags = "数据字典服务接口",description = "数据字典服务接口")
 @RequestMapping("/admin/dictionary")
 public class TDictionaryController {
@@ -31,7 +30,7 @@ public class TDictionaryController {
     private ITDictionaryService itdictionaryService;
 
     @ApiOperation(value = "根据id获取子节点数据")
-    @GetMapping("/get/{id}")
+    @GetMapping("/getChildById/{id}")
     public List<TDictionary> getChildData(@PathVariable String id){
         return itdictionaryService.getChildData(id);
     }
@@ -45,13 +44,20 @@ public class TDictionaryController {
     public void importDictionary(MultipartFile file) throws ApplicationException, IOException {
         itdictionaryService.importDictionary(file);
     }
+    @ApiOperation(value = "根据字典编码和字典值查询字典子节点key")
     @GetMapping("/getName/{dictCode}/{value}")
     public String getName (@PathVariable String dictCode,
                            @PathVariable String value){
         return itdictionaryService.getName(dictCode,value);
     }
+    @ApiOperation(value = "根据字典值查询字典key")
     @GetMapping("/getName/{value}")
     public String getName (@PathVariable String value){
         return itdictionaryService.getName("",value);
+    }
+    @ApiOperation(value = "根据dictCode获取子节点数据")
+    @GetMapping("/getChildByDictCode/{dictCode}")
+    public List<TDictionary> getChildeDictionaryByDictCode(@PathVariable String dictCode){
+        return itdictionaryService.getChildeDictionaryByDictCode(dictCode);
     }
 }

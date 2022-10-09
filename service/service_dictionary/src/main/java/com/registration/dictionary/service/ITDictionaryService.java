@@ -25,4 +25,6 @@ public interface ITDictionaryService extends IService<TDictionary> {
     void importDictionary(MultipartFile file);
 
     String getName (String dictCode,String value);
+
+    List<TDictionary> getChildeDictionaryByDictCode(String dictCode);
 }

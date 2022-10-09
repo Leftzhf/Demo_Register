@@ -13,6 +13,6 @@ public interface DictionClientService {
     ResponseData<String> getNameByDictCodeAndValue (@PathVariable("dictCode") String dictCode,
                                             @PathVariable("value") String value);
 
-    @GetMapping("/admin/dictionary/getName/{dictCode}/{value}")
+    @GetMapping("/admin/dictionary/getName/{value}")
     ResponseData<String> getNameByValue (@PathVariable("value") String value);
 }

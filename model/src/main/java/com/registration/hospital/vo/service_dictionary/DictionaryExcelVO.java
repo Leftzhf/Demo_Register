@@ -1,4 +1,4 @@
-package com.registration.hospital.vo;
+package com.registration.hospital.vo.service_dictionary;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;

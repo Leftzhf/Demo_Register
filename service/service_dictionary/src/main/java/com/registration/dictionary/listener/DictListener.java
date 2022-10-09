@@ -4,7 +4,7 @@ import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.registration.dictionary.mapper.TDictionaryMapper;
 import com.registration.hospital.entity.TDictionary;
-import com.registration.hospital.vo.DictionaryExcelVO;
+import com.registration.hospital.vo.service_dictionary.DictionaryExcelVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -17,7 +17,6 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.time.Duration;
 
@@ -34,6 +33,7 @@ public class RedisConfig {
     @Bean
     public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
+            //设置生成的Key名称规则:全限定的类名+方法名+参数名
             @Override
             public Object generate(Object target, Method method, Object... params) {
                 StringBuilder sb = new StringBuilder();

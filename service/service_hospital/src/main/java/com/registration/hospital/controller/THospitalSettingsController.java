@@ -29,8 +29,7 @@ import java.util.List;
  */
 @RestController
 @Validated
-@CrossOrigin
-@RequestMapping("/admin/hospital-settings")
+@RequestMapping("/admin/hospital/settings")
 @Api(tags = "医院设置信息接口", description = "医院设置信息接口")
 public class THospitalSettingsController {
 
