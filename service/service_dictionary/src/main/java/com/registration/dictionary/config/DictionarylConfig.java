@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 
 @MapperScan("com.registration.dictionary.mapper")
-public class HospitalConfig {
+public class DictionarylConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
