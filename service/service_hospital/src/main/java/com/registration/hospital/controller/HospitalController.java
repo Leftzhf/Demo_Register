@@ -1,9 +1,8 @@
 package com.registration.hospital.controller;
 
-import com.registration.hospital.entity.hospital.Hospital;
 import com.registration.hospital.service.HospitalService;
-import com.registration.hospital.service.ScheduleService;
-import com.registration.hospital.vo.query.HospitalQueryVo;
+import com.registration.service_hospital.entity.hospital.Hospital;
+import com.registration.service_hospital.vo.query.HospitalQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class HospitalController {
     @Autowired
     private HospitalService hospitalService;
-    @Autowired
-    private ScheduleService scheduleService;
 
     @PostMapping("/get/{page}/{limit}")
     @ApiOperation(value = "查询医院信息-分页")
@@ -39,7 +36,4 @@ public class HospitalController {
         return hospitalService.getHospitalById(id);
     }
 
-//    public Schedule getSchedule (@PathVariable String id){
-//        return scheduleService.getSchedule(id);
-//    }
 }

@@ -1,7 +1,7 @@
 package com.registration.dictionary.controller;
 
 import com.registration.dictionary.service.ITDictionaryService;
-import com.registration.hospital.entity.TDictionary;
+import com.registration.service_hospital.entity.TDictionary;
 import com.registration.response.exception.ApplicationException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

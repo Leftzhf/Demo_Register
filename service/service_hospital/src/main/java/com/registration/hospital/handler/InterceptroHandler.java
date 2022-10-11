@@ -1,7 +1,7 @@
 package com.registration.hospital.handler;
 
 import cn.hutool.crypto.SecureUtil;
-import com.registration.hospital.entity.hospital.THospitalSettings;
+import com.registration.service_hospital.entity.hospital.THospitalSettings;
 import com.registration.hospital.service.ITHospitalSettingsService;
 import com.registration.response.enums.ResultCodeEnum;
 import com.registration.response.exception.ApplicationException;

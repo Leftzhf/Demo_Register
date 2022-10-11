@@ -1,8 +1,8 @@
 package com.registration.hospital.controller;
 
 import com.registration.hospital.service.ScheduleService;
-import com.registration.hospital.vo.service_hospital.BookingScheduleRuleVO;
-import com.registration.hospital.vo.service_hospital.ScheduleVO;
+import com.registration.service_hospital.vo.BookingScheduleRuleVO;
+import com.registration.service_hospital.vo.ScheduleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

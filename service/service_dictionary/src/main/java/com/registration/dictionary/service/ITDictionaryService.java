@@ -1,7 +1,7 @@
 package com.registration.dictionary.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.registration.hospital.entity.TDictionary;
+import com.registration.service_hospital.entity.TDictionary;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;

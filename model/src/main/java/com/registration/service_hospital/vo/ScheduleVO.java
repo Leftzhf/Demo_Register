@@ -1,6 +1,6 @@
-package com.registration.hospital.vo.service_hospital;
+package com.registration.service_hospital.vo;
 
-import com.registration.hospital.entity.hospital.Schedule;
+import com.registration.service_hospital.entity.hospital.Schedule;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

@@ -3,11 +3,11 @@ package com.registration.hospital.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.registration.common.helper.helper.HttpRequestHelper;
 import com.registration.dictionary.client.DictionClientService;
-import com.registration.hospital.entity.hospital.Hospital;
+import com.registration.service_hospital.entity.hospital.Hospital;
 import com.registration.hospital.reposotory.HospitalRepository;
 import com.registration.hospital.service.HospitalService;
 import com.registration.hospital.service.ITHospitalSettingsService;
-import com.registration.hospital.vo.query.HospitalQueryVo;
+import com.registration.service_hospital.vo.query.HospitalQueryVo;
 import com.registration.response.web.ResponseData;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 @Service
 public class HospitalServiceImpl implements HospitalService {
@@ -74,7 +75,9 @@ public class HospitalServiceImpl implements HospitalService {
     public Page<Hospital> getHospitalByPage(Integer page, Integer limit, HospitalQueryVo hospitalSetQueryVo) {
 
         PageRequest pageRequest = PageRequest.of(page-1, limit);
-        ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING).withIgnoreCase(true);
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                .withIgnoreCase(true);
         Hospital hospital = new Hospital();
         BeanUtils.copyProperties(hospitalSetQueryVo,hospital);
         Example<Hospital> example = Example.of(hospital, matcher);
@@ -112,5 +115,18 @@ public class HospitalServiceImpl implements HospitalService {
         return hospital;
     }
 
+    @Override
+    public List<Hospital> getHospitalByName(String name) {
+        if (name == null) {
+            return hospitalRepository.findAll();
+        }
+        return hospitalRepository.findHospitalByHosnameLike(name);
+    }
 
+    @Override
+    public Hospital getHospitalInfo(String hosCode) {
+        Hospital hospital = hospitalRepository.getHospitalByHoscode(hosCode);
+        getHospitalInfo(hospital);
+        return hospital;
+    }
 }

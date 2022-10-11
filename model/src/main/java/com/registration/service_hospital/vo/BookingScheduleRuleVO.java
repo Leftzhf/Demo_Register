@@ -1,4 +1,4 @@
-package com.registration.hospital.vo.service_hospital;
+package com.registration.service_hospital.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

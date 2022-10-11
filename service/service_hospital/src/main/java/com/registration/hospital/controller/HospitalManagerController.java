@@ -1,8 +1,8 @@
 package com.registration.hospital.controller;
 
-import com.registration.hospital.entity.hospital.Department;
-import com.registration.hospital.entity.hospital.Hospital;
-import com.registration.hospital.entity.hospital.Schedule;
+import com.registration.service_hospital.entity.hospital.Department;
+import com.registration.service_hospital.entity.hospital.Hospital;
+import com.registration.service_hospital.entity.hospital.Schedule;
 import com.registration.hospital.service.DepartmentService;
 import com.registration.hospital.service.HospitalService;
 import com.registration.hospital.service.ScheduleService;

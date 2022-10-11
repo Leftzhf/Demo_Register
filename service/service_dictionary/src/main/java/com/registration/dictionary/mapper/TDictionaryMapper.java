@@ -1,6 +1,6 @@
 package com.registration.dictionary.mapper;
 
-import com.registration.hospital.entity.TDictionary;
+import com.registration.service_hospital.entity.TDictionary;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

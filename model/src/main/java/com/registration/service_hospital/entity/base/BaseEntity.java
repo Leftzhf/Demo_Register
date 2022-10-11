@@ -1,4 +1,4 @@
-package com.registration.hospital.entity.base;
+package com.registration.service_hospital.entity.base;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

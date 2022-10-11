@@ -1,4 +1,4 @@
-package com.registration.hospital.entity.hospital;
+package com.registration.service_hospital.entity.hospital;
 
 import com.alibaba.fastjson.JSONArray;
 import io.swagger.annotations.ApiModel;

@@ -4,10 +4,10 @@ import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.registration.hospital.entity.hospital.THospitalSettings;
+import com.registration.service_hospital.entity.hospital.THospitalSettings;
 import com.registration.hospital.mapper.THospitalSettingsMapper;
 import com.registration.hospital.service.ITHospitalSettingsService;
-import com.registration.hospital.vo.query.HospitalSetQueryVo;
+import com.registration.service_hospital.vo.query.HospitalSetQueryVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

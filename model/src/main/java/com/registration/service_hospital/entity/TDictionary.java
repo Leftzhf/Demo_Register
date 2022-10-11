@@ -1,4 +1,4 @@
-package com.registration.hospital.entity;
+package com.registration.service_hospital.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;

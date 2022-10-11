@@ -3,10 +3,10 @@ package com.registration.hospital.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.registration.common.helper.helper.HttpRequestHelper;
-import com.registration.hospital.entity.hospital.Department;
+import com.registration.service_hospital.entity.hospital.Department;
 import com.registration.hospital.reposotory.DepartmentRepository;
 import com.registration.hospital.service.DepartmentService;
-import com.registration.hospital.vo.service_hospital.DepartmentVO;
+import com.registration.service_hospital.vo.DepartmentVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
