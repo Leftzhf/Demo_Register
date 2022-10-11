@@ -1,7 +1,7 @@
-package com.registration.hospital.entity.hospital;
+package com.registration.service_hospital.entity.hospital;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.registration.hospital.entity.base.BaseMongoEntity;
+import com.registration.service_hospital.entity.base.BaseMongoEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

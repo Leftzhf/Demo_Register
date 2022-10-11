@@ -1,7 +1,7 @@
 package com.registration.hospital.controller;
 
 import com.registration.hospital.service.DepartmentService;
-import com.registration.hospital.vo.service_hospital.DepartmentVO;
+import com.registration.service_hospital.vo.DepartmentVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,11 @@
 package com.registration.hospital.service;
 
-import com.registration.hospital.entity.hospital.Hospital;
-import com.registration.hospital.vo.query.HospitalQueryVo;
+import com.registration.service_hospital.entity.hospital.Hospital;
+import com.registration.service_hospital.vo.query.HospitalQueryVo;
 import org.springframework.data.domain.Page;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 /**
@@ -60,5 +61,8 @@ public interface HospitalService {
      */
     Hospital getHospitalById(String id);
 
+    List<Hospital> getHospitalByName (String name);
+
+    Hospital getHospitalInfo(String hosCode);
 
 }

@@ -1,6 +1,6 @@
 package com.registration.hospital.reposotory;
 
-import com.registration.hospital.entity.hospital.Schedule;
+import com.registration.service_hospital.entity.hospital.Schedule;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

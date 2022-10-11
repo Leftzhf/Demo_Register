@@ -1,7 +1,7 @@
 package com.registration.hospital.service;
 
-import com.registration.hospital.entity.hospital.Department;
-import com.registration.hospital.vo.service_hospital.DepartmentVO;
+import com.registration.service_hospital.entity.hospital.Department;
+import com.registration.service_hospital.vo.DepartmentVO;
 import org.springframework.data.domain.Page;
 
 import javax.servlet.http.HttpServletRequest;

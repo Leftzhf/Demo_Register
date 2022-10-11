@@ -1,8 +1,8 @@
 package com.registration.hospital.service;
 
-import com.registration.hospital.entity.hospital.Schedule;
-import com.registration.hospital.vo.service_hospital.BookingScheduleRuleVO;
-import com.registration.hospital.vo.service_hospital.ScheduleVO;
+import com.registration.service_hospital.entity.hospital.Schedule;
+import com.registration.service_hospital.vo.BookingScheduleRuleVO;
+import com.registration.service_hospital.vo.ScheduleVO;
 import org.springframework.data.domain.Page;
 
 import javax.servlet.http.HttpServletRequest;

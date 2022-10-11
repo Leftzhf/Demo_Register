@@ -2,8 +2,8 @@ package com.registration.hospital.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.registration.hospital.entity.hospital.THospitalSettings;
-import com.registration.hospital.vo.query.HospitalSetQueryVo;
+import com.registration.service_hospital.entity.hospital.THospitalSettings;
+import com.registration.service_hospital.vo.query.HospitalSetQueryVo;
 
 /**
  * ithospital设置服务

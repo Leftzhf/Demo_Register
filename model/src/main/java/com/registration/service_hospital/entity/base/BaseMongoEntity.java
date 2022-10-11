@@ -1,4 +1,4 @@
-package com.registration.hospital.entity.base;
+package com.registration.service_hospital.entity.base;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

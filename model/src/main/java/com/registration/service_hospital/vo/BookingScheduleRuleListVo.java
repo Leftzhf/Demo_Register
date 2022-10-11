@@ -1,4 +1,4 @@
-package com.registration.hospital.vo.service_hospital;
+package com.registration.service_hospital.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;

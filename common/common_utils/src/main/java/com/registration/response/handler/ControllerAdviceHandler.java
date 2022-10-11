@@ -166,6 +166,11 @@ public class ControllerAdviceHandler implements ResponseBodyAdvice<Object> {
     public ResponseData<String> handlerHttpMessageNotReadableException(Exception e) {
         return ResponseData.failure("请求参数异常");
     }
+    @ResponseBody
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseData<String> handlerIllegalArgumentException(Exception e) {
+        return ResponseData.failure("请求参数异常");
+    }
 
     @ResponseBody
     @ExceptionHandler(value = ApplicationException.class)
